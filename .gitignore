@@ -1,0 +1,16 @@
+# Ignorar carpeta de entorno virtual
+venv/
+
+# Ignorar archivos compilados de Python
+__pycache__/
+*.py[cod]
+
+# Ignorar variables de entorno (Claves secretas)
+.env
+
+# Ignorar base de datos local (Opcional, pero recomendado)
+*.db
+*.sqlite3
+
+# Ignorar carpeta de sistema de Mac (por si acaso)
+.DS_Store
