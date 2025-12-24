@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 
 function App() {
   // 1. State to store the project list
@@ -17,13 +18,12 @@ function App() {
   }, []);
 
   return (
-    // CHANGE 1: Removed 'p-8' from here so Navbar touches the edges
-    <div className="min-h-screen bg-gray-100">
-      {/*Change 2: Added the Navbar component here */}
+    // CHANGE 1: Added 'flex flex-col' to create a vertical layout structure
+    <div className="min-h-screen bg-gray-100 flex flex-col">
       <Navbar />
 
-      {/* CHANGE 3: Created a 'main' wrapper with 'p-8' for the content*/}
-      <main className="p-8">
+      {/* CHANGE 2: Added 'flex-grow' to push the Footer to the bottom */}
+      <main className="p-8 flex-grow">
         {/*Header*/}
         <div className="max-w-4xl mx-auto mb-10 text-center">
           <h1 className="text-4xl font-bold text-blue-700 mb-2">
@@ -94,6 +94,9 @@ function App() {
           </div>
         )}
       </main>
+
+      {/* CHANGE 3: Added Footer component at the bottom */}
+      <Footer />
     </div>
   );
 }
