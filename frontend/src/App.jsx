@@ -18,15 +18,13 @@ function App() {
   }, []);
 
   return (
-    // CHANGE 1: Added 'flex flex-col' to create a vertical layout structure
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <div className="min-h-screen bg-slate-950 text-white flex flex-col">
       <Navbar />
 
-      {/* CHANGE 2: Added 'flex-grow' to push the Footer to the bottom */}
       <main className="p-8 flex-grow">
         {/*Header*/}
         <div className="max-w-4xl mx-auto mb-10 text-center">
-          <h1 className="text-4xl font-bold text-blue-700 mb-2">
+          <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
             My portfolio
           </h1>
           <p className="text-gray-600">
@@ -40,19 +38,19 @@ function App() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-blue-500"
+              className="bg-slate-900 p-6 rounded-lg shadow-md hover:shadow-xl hover:shadow-blue-500/10 transition-shadow border-l-4 border-blue-500 border-t-0 border-r-0 border-b-0"
             >
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              <h2 className="text-2xl font-bold text-white mb-2">
                 {project.title}
               </h2>
-              <p className="text-gray-600 mb-4">{project.description}</p>
+              <p className="text-gray-400 mb-4">{project.description}</p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tags.split(",").map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded"
+                    className="bg-slate-800 text-blue-300 text-xs font-semibold px-2 py-1 rounded border border-slate-700"
                   >
                     {tag.trim()}
                   </span>
@@ -65,7 +63,7 @@ function App() {
                   href={project.link_github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center gap-1"
+                  className="text-blue-400 hover:text-blue-300 font-medium text-sm flex items-center gap-1"
                 >
                   View GitHub Code
                 </a>
@@ -74,7 +72,7 @@ function App() {
                     href={project.link_demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-green-600 hover:text-green-800 font-medium text-sm"
+                    className="text-green-400 hover:text-green-300 font-medium text-sm"
                   >
                     View Live Demo →
                   </a>
@@ -95,7 +93,6 @@ function App() {
         )}
       </main>
 
-      {/* CHANGE 3: Added Footer component at the bottom */}
       <Footer />
     </div>
   );
