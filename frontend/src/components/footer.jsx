@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8 mt-auto">
+    <footer className="w-full border-t border-white/10 bg-black/50 backdrop-blur-sm mt-auto text-white py-8">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Brand and Copyright*/}
