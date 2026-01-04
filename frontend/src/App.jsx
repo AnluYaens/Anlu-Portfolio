@@ -21,12 +21,13 @@ function App() {
     // FIX: change 'overflow-hidden' for 'overflow-x-hidden'
     <div className="min-h-screen w-full bg-black text-white flex flex-col relative font-sans">
       {/* Background Ambient Glow */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
-
+      <div className="fixed inset-0 w-full h-full pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]" />
+      </div>
       <Navbar />
       {/* NOTE: Added pt-32 to push content down below fixed Navbar, and z-10 to stay above background lights */}
-      <main className="flex-grow pt-32 relative z-10 px-6">
+      <main className="flex-grow pt-32 pb-20 relative z-10 px-6">
         {/*Hero Section*/}
         <div className="flex flex-col items-center justify-center py-10 text-center max-w-4xl mx-auto">
           {/* Avatar Section*/}
