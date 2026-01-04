@@ -18,17 +18,18 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col relative overflow-hidden font-sans">
+    // FIX: change 'overflow-hidden' for 'overflow-x-hidden'
+    <div className="min-h-screen w-full bg-black text-white flex flex-col relative font-sans">
       {/* Background Ambient Glow */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
 
       <Navbar />
       {/* NOTE: Added pt-32 to push content down below fixed Navbar, and z-10 to stay above background lights */}
-      <main className="p-8 flex-grow pt-32 relative z-10">
+      <main className="flex-grow pt-32 relative z-10 px-6">
         {/*Hero Section*/}
         <div className="flex flex-col items-center justify-center py-10 text-center max-w-4xl mx-auto">
-          {/* Avatar Circle with Glow Effect */}
+          {/* Avatar Section*/}
           <div className="relative mb-6">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-40 animate-pulse"></div>
             <img
@@ -39,7 +40,7 @@ function App() {
           </div>
 
           {/* Name & Title */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
             Hey, I'm{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
               Angel
@@ -58,8 +59,8 @@ function App() {
             in Berlin. Building seamless digital experiences
           </p>
 
-          {/* Location & Socials (Replaced big buttons) */}
-          <div className="flex flex-col items-center gap-4">
+          {/* Location & Socials */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
             {/* Location Badge */}
             <div className="flex items-center gap-2 px-4 py-1.5 bg-white/5 rounded-full border border-white/10 text-sm text-gray-300">
               <svg
@@ -81,10 +82,20 @@ function App() {
                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                 ></path>
               </svg>
+              <span>Berlin, Germany</span>
+            </div>
+
+            {/* Open to Work Badge */}
+            <div className="flex items-center gap-2 px-4 py-1.5 bg-green-500/10 rounded-full border border-green-500/20 text-sm text-green-400 font-medium">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              Open to Work
             </div>
 
             {/* Social Icons Row */}
-            <div className="flex gap-6 mt-2">
+            <div className="flex gap-6">
               {/* GitHub */}
               <a
                 href="#"
@@ -244,11 +255,11 @@ function App() {
             Featured Projects
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((project) => (
               <div
                 key={project.id}
-                className="group relative bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-blue-500/50 hover:bg-white/10 trnasition-all duration-300"
+                className="group relative bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-blue-500/50 hover:bg-white/10 transition-all duration-300"
               >
                 {/* Glow effect on hover */}
                 <div className=" absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 transition duration-500 blur"></div>
@@ -262,7 +273,7 @@ function App() {
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tags.split("", "").map((tag, index) => (
+                    {project.tags.split(",").map((tag, index) => (
                       <span
                         key={index}
                         className="bg-white/10 text-blue-200 text-xs font-medium px-3 py-1 rounded-full border border-white/5"
