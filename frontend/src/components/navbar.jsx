@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     // CHANGE 1: Dark background and white text
-    <nav className="fixed w-full z-50 toop-0 start-0 border-b border-white/5 bg-black/30 backdrop-blur-md">
+    <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/5 bg-black/30 backdrop-blur-md">
       <div className="w-full px-6 md:px-12 mx-auto">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
