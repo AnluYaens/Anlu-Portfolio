@@ -19,14 +19,26 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
           {/* Social Links */}
           <div className="flex gap-4 text-gray-400 font-medium">
-            <a href="#" className="hover:text-white transition-colors">
+            <a
+              href="https://www.linkedin.com/in/angel-ja%C3%A9n-910389332/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
               LinkedIn
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a
+              href="https://github.com/AnluYaens"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
               GitHub
             </a>
             <a
               href="mailto:contact@angel.dev"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-white transition-colors"
             >
               Email
@@ -35,7 +47,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <span className="text-gray-600 text-xs">
-            © {new Date().getFullYear()}
+            © Anludev{new Date().getFullYear()}
           </span>
         </div>
       </div>

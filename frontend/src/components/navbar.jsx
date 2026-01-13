@@ -9,16 +9,19 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
-            <a
-              href="#"
-              className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500 hover:opacity-80 transition-opacity tracking-wide"
-            >
+            <div className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500 tracking-wide no-select">
               AnluDev
-            </a>
+            </div>
           </div>
 
           {/* Menu Items (Desktop) */}
           <div className="hidden md:flex space-x-8">
+            <a
+              href="#top"
+              className="text-gray-400 hover:text-purple-400 font-medium transition duration-300 text-sm"
+            >
+              Home
+            </a>
             <a
               href="#projects"
               className="text-gray-400 hover:text-purple-400 font-medium transition duration-300 text-sm"
@@ -26,7 +29,7 @@ const Navbar = () => {
               Projects
             </a>
             <a
-              href="#"
+              href="#about"
               className="text-gray-400 hover:text-purple-400 font-medium transition duration-300 text-sm"
             >
               About Me

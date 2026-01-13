@@ -4,12 +4,12 @@ import Footer from "./components/footer";
 import Hero from "./components/hero";
 import ProjectsGrid from "./components/projects-grid";
 import BentoGrid from "./components/bento-grid";
+import ContactSection from "./components/contact-section";
 
 function App() {
-  // 1. State to store the project list
+  // State to store the project list
   const [projects, setProjects] = useState([]);
-
-  // 2. useEffect: Runs once when the page loads
+  // useEffect: Runs once when the page loads
   useEffect(() => {
     // Fetch data from YOUR Backend (Python)
     fetch("http://127.0.0.1:8000/projects/")
@@ -21,7 +21,10 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-black text-white flex flex-col relative font-sans">
+    <div
+      id="top"
+      className="min-h-screen w-full bg-black text-white flex flex-col relative font-sans"
+    >
       {/* Background Ambient Glow */}
       <div className="fixed inset-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px]" />
@@ -30,10 +33,9 @@ function App() {
       <Navbar />
       <main className="flex-grow pt-32 pb-20 relative z-10 px-6">
         <Hero />
-
         <BentoGrid />
-
         <ProjectsGrid projects={projects} />
+        <ContactSection />
       </main>
       <Footer />
     </div>

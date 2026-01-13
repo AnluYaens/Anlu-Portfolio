@@ -1,45 +1,65 @@
 import React from "react";
 
 const BentoGrid = () => {
+  // Array de tecnologías con sus iconos de DevIcons
+  const technologies = [
+    { name: "Python", icon: "devicon-python-plain colored" },
+    { name: "React", icon: "devicon-react-original colored" },
+    { name: "FastAPI", icon: "devicon-fastapi-plain colored" },
+    { name: "JavaScript", icon: "devicon-javascript-plain colored" },
+    { name: "Tailwind CSS", icon: "devicon-tailwindcss-original colored" },
+    { name: "SQL", icon: "devicon-postgresql-plain colored" },
+    { name: "Git", icon: "devicon-git-plain colored" },
+    { name: "Docker", icon: "devicon-docker-plain colored" },
+    { name: "HTML5", icon: "devicon-html5-plain colored" },
+    { name: "CSS3", icon: "devicon-css3-plain colored" },
+  ];
+
   return (
-    <section className="max-w-6xl mx-auto mt-16 mb-20">
+    <section id="about" className="max-w-6xl mx-auto mt-16 mb-20">
       <h3 className="text-2xl font-bold text-white mb-6 pl-2 border-l-4 border-purple-500">
         My Arsenal
       </h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Tech Stack (Full Width Bar) - Spans 2 columns */}
-        <div className="md:col-span-2 bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-          <h4 className="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-4">
+        <div className="md:col-span-2 bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all duration-300 backdrop-blur-sm">
+          <h4 className="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-4 flex items-center gap-2">
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+              ></path>
+            </svg>
             Languages & Frameworks
           </h4>
-          {/* Horizontal Tech List */}
+
+          {/* Horizontal Tech list with icons */}
           <div className="flex flex-wrap gap-3">
-            {[
-              "Python",
-              "React",
-              "FastAPI",
-              "JavaScript",
-              "Tailwind CSS",
-              "SQL",
-              "Git",
-              "Docker",
-              "HTML5",
-              "CSS3",
-            ].map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1 bg-white/10 rounded-lg text-sm text-gray-200 border border-white/5 hover:bg-white/20 transition cursor-default"
+            {technologies.map((tech, index) => (
+              <div
+                key={tech.name}
+                className="tech-badge flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg text-sm text-gray-200 border border-white/5 hover:bg-white/20 hover:border-purple-500/30 hover:-translate-y-1 transition-all duration-300 cursor-default group"
               >
-                {tech}
-              </span>
+                <i
+                  className={`${tech.icon} text-xl group-hover:scale-110 transition-transform`}
+                ></i>
+                <span>{tech.name}</span>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Focus Area (Left Half) */}
-        <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-          <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 text-blue-400">
+        <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-blue-500/50 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10 no-select">
+          <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 text-blue-400 group-hover:scale-110 transition-transform">
             <svg
               className="w-6 h-6"
               fill="none"
@@ -54,18 +74,19 @@ const BentoGrid = () => {
               ></path>
             </svg>
           </div>
-          <h4 className="text-xl font-bold text-white mb-2">My focus</h4>
+          <h4 className="text-xl font-bold text-white mb-3">My focus</h4>
           <p className="text-gray-400 text-sm leading-relaxed">
             I specialize in building efficient backend with{" "}
-            <span className="text-blue-400">Python</span> and clean, responsive
-            frontends with <span className="text-cyan-400">React</span>. I value
+            <span className="text-blue-400 font-medium">Python</span> and clean,
+            responsive frontends with{" "}
+            <span className="text-cyan-400 font-medium">React</span>. I value
             code readability and performance.
           </p>
         </div>
 
         {/* Learning Status (Right Half) */}
-        <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
-          <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 text-purple-400">
+        <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-purple-500/10 no-select">
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-purple-400 group-hover:scale-110 transition-transform">
             <svg
               className="w-6 h-6"
               fill="none"
@@ -80,21 +101,27 @@ const BentoGrid = () => {
               ></path>
             </svg>
           </div>
-          <h4 className="text-xl font-bold text-white mb-2">
+          <h4 className="text-xl font-bold text-white mb-3">
             Currently Learning
           </h4>
-          <ul className="space-y-2 text-sm text-gray-400">
-            <li className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
-              Advanced Microservices
+          <ul className="space-y-3 text-sm text-gray-400">
+            <li className="flex items-center gap-3 group">
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+              <span className="group-hover:text-gray-200 transition-colors">
+                Advanced Microservices
+              </span>
             </li>
-            <li className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
-              Machine Learning
+            <li className="flex items-center gap-3 group">
+              <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+              <span className="group-hover:text-gray-200 transition-colors">
+                Machine Learning
+              </span>
             </li>
-            <li className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
-              Cloud Architecture (AWS)
+            <li className="flex items-center gap-3 group">
+              <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+              <span className="group-hover:text-gray-200 transition-colors">
+                Cloud Architecture (AWS)
+              </span>
             </li>
           </ul>
         </div>

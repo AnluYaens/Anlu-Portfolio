@@ -5,6 +5,7 @@ from typing import Optional
 class ProjectCreate(BaseModel):
     title: str
     description: str
+    featured: bool = False
     image_url: Optional[str] = None
     link_github: Optional[str] = None
     link_demo: Optional[str] = None
@@ -14,6 +15,7 @@ class ProjectCreate(BaseModel):
 class ProjectUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
+    featured: Optional[bool] = None
     image_url: Optional[str] = None
     link_github: Optional[str] = None
     link_demo: Optional[str] = None
