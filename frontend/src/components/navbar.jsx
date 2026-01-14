@@ -2,7 +2,6 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    // CHANGE 1: Dark background and white text
     <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/5 bg-black/30 backdrop-blur-md">
       <div className="w-full px-6 md:px-12 mx-auto">
         <div className="flex justify-between items-center h-16">
@@ -10,7 +9,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
             <div className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500 tracking-wide no-select">
-              AnluDev
+              Anlucodes
             </div>
           </div>
 

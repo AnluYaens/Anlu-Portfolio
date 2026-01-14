@@ -36,7 +36,7 @@ const Footer = () => {
               GitHub
             </a>
             <a
-              href="mailto:contact@angel.dev"
+              href="https://outlook.live.com/mail/0/deeplink/compose?to=anlucodes@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
@@ -47,7 +47,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <span className="text-gray-600 text-xs">
-            © Anludev{new Date().getFullYear()}
+            © Anlucodes{new Date().getFullYear()}
           </span>
         </div>
       </div>

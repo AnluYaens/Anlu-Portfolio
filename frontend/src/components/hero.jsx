@@ -19,7 +19,7 @@ const Hero = () => {
         <div className="relative">
           <img
             src="https://api.dicebear.com/9.x/avataaars/svg?seed=Anlu"
-            alt="Anludev"
+            alt="AnluCodes"
             className="relative w-36 h-36 rounded-full border border-purple-500/50 bg-black shadow-2xl hover:scale-105 transition-transform duration-300"
           />
         </div>
@@ -109,7 +109,7 @@ const Hero = () => {
         </a>
         {/* Email */}
         <a
-          href="mailto:contact@angel.dev"
+          href="https://outlook.live.com/mail/0/deeplink/compose?to=anlucodes@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-400 hover:text-purple-400 transition-all transform hover:scale-110 hover:-translate-y-1"

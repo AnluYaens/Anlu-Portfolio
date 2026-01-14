@@ -49,7 +49,7 @@ const ContactSection = () => {
             </a>
 
             <a
-              href="mailto:contact@angel.dev"
+              href="https://outlook.live.com/mail/0/deeplink/compose?to=anlucodes@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-blue-500/50 hover:bg-white/10 transition-all"
