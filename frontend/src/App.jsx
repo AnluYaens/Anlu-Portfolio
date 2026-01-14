@@ -5,8 +5,14 @@ import Hero from "./components/hero";
 import ProjectsGrid from "./components/projects-grid";
 import BentoGrid from "./components/bento-grid";
 import ContactSection from "./components/contact-section";
+import AdminPanel from "./components/admin-panel";
 
 function App() {
+  // Simple "Router" for the Admin Panel
+  if (window.location.pathname === "/admin") {
+    return <AdminPanel />;
+  }
+
   // State to store the project list
   const [projects, setProjects] = useState([]);
   // useEffect: Runs once when the page loads

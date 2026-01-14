@@ -20,3 +20,8 @@ class ProjectUpdate(BaseModel):
     link_github: Optional[str] = None
     link_demo: Optional[str] = None
     tags: Optional[str] = None
+
+class ContactCreate(BaseModel):
+    name: str
+    email: str
+    message: str
