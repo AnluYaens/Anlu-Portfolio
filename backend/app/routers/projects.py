@@ -5,6 +5,7 @@ from typing import List
 from ..database import get_session
 from ..models import Project
 from ..schemas import ProjectCreate, ProjectUpdate
+from ..security import verify_admin
 
 router = APIRouter(prefix="/projects", tags=["projects"])
 
@@ -15,7 +16,7 @@ def read_projects(session: Session = Depends(get_session)):
     return projects
 
 # Create a project (CREATE)
-@router.post("/", response_model=Project)
+@router.post("/", response_model=Project, dependencies=[Depends(verify_admin)])
 def create_project(project: ProjectCreate, session: Session = Depends(get_session)):
     # Convert the squema into a data base model
     db_project = Project.model_validate(project)
@@ -33,7 +34,7 @@ def read_project(project_id: int, session: Session = Depends(get_session)):
     return project
 
 # Update a project (UPDATE)
-@router.patch("/{project_id}", response_model=Project)
+@router.patch("/{project_id}", response_model=Project, dependencies=[Depends(verify_admin)])
 def update_project(project_id: int, project_update: ProjectUpdate, session: Session = Depends(get_session)):
     db_project = session.get(Project, project_id)
     if not db_project:
@@ -49,7 +50,7 @@ def update_project(project_id: int, project_update: ProjectUpdate, session: Sess
     return db_project
 
 # Delete a project (DELETE)
-@router.delete("/{project_id}")
+@router.delete("/{project_id}", dependencies=[Depends(verify_admin)])
 def delete_project(project_id: int, session: Session = Depends(get_session)):
     project = session.get(Project, project_id)
     if not project:

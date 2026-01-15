@@ -1,37 +1,22 @@
-from fastapi import APIRouter, Depends, HTTPException, Header
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import StreamingResponse
-from io import StringIO, BytesIO
+from io import BytesIO
 from sqlmodel import Session, select
-from typing import List, Optional
-import csv
-import os
+from typing import List
 from openpyxl import Workbook
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.styles import Font, PatternFill, Alignment
 
 from ..database import get_session
 from ..models import ContactMessage
 from ..schemas import ContactCreate
-
-# Load environment variables if not already loaded
-from dotenv import load_dotenv
-load_dotenv()
+from ..security import verify_admin
+from ..limiter import limiter
 
 router = APIRouter(prefix="/contacts", tags=["contacts"])
 
-# Dependency to verify admin password
-def verify_admin(x_admin_password: Optional[str] = Header(None)):
-    admin_password = os.getenv("ADMIN_PASSWORD")
-    if not admin_password:
-        return True # If no password set in env, allow access (or should we block? block is safer but let's allow for dev ease if forgot)
-        # Better: if not set, strict deny usually, but for this simpler app:
-        # raise HTTPException(status_code=500, detail="Admin password not configured")
-    
-    if x_admin_password != admin_password:
-        raise HTTPException(status_code=401, detail="Invalid admin password")
-    return True
-
 @router.post("/", response_model=ContactMessage)
-def create_contact(contact: ContactCreate, session: Session = Depends(get_session)):
+@limiter.limit("5/minute")
+def create_contact(request: Request, contact: ContactCreate, session: Session = Depends(get_session)):
     db_contact = ContactMessage.model_validate(contact)
     session.add(db_contact)
     session.commit()
@@ -39,25 +24,14 @@ def create_contact(contact: ContactCreate, session: Session = Depends(get_sessio
     return db_contact
 
 @router.get("/", response_model=List[ContactMessage], dependencies=[Depends(verify_admin)])
-def read_contacts(session: Session = Depends(get_session)):
+@limiter.limit("30/minute")
+def read_contacts(request: Request, session: Session = Depends(get_session)):
     contacts = session.exec(select(ContactMessage).order_by(ContactMessage.created_at.desc())).all()
     return contacts
 
-@router.get("/export", dependencies=[Depends(verify_admin)])
-def export_contacts_csv(session: Session = Depends(get_session)):
-    contacts = session.exec(select(ContactMessage).order_by(ContactMessage.created_at.desc())).all()
-    output = StringIO()
-    writer = csv.writer(output)
-    writer.writerow(["ID", "Name", "Email", "Message", "Date"])
-    for contact in contacts:
-        created_at = contact.created_at.strftime("%Y-%m-%d %H:%M:%S") if contact.created_at else ""
-        writer.writerow([contact.id, contact.name, contact.email, contact.message, created_at])
-    output.seek(0)
-    headers = {"Content-Disposition": "attachment; filename=contacts.csv"}
-    return StreamingResponse(output, media_type="text/csv", headers=headers)
-
 @router.get("/export-excel", dependencies=[Depends(verify_admin)])
-def export_contacts_excel(session: Session = Depends(get_session)):
+@limiter.limit("5/minute")
+def export_contacts_excel(request: Request, session: Session = Depends(get_session)):
     contacts = session.exec(select(ContactMessage).order_by(ContactMessage.created_at.desc())).all()
     
     wb = Workbook()

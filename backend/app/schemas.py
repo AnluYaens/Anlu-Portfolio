@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 
 # Model to create a project
@@ -22,6 +22,6 @@ class ProjectUpdate(BaseModel):
     tags: Optional[str] = None
 
 class ContactCreate(BaseModel):
-    name: str
-    email: str
-    message: str
+    name: str = Field(min_length=2, max_length=80)
+    email: EmailStr
+    message: str = Field(min_length=5, max_length=1000)
