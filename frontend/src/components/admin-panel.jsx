@@ -7,6 +7,7 @@ const AdminPanel = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const API_URL = import.meta.env.VITE_API_URL;
   const totalMessages = contacts.length;
   const latestContact = contacts[0] || null;
   const latestContactDate = latestContact?.created_at
@@ -19,21 +20,12 @@ const AdminPanel = () => {
     return createdAt.toDateString() === now.toDateString();
   }).length;
 
-  // Check if password was saved in session
-  useEffect(() => {
-    const savedPassword = sessionStorage.getItem("admin_password");
-    if (savedPassword) {
-      setPassword(savedPassword);
-      verifyPassword(savedPassword);
-    }
-  }, []);
-
   const verifyPassword = async (pwd) => {
     setLoading(true);
     setError("");
     try {
       // Try to fetch contacts to verify password
-      const response = await fetch("http://127.0.0.1:8000/contacts/", {
+      const response = await fetch(`${API_URL}/contacts/`, {
         headers: {
           "x-admin-password": pwd,
         },
@@ -43,14 +35,16 @@ const AdminPanel = () => {
         const data = await response.json();
         setContacts(data);
         setIsAuthenticated(true);
-        sessionStorage.setItem("admin_password", pwd);
-      } else {
+      } else if (response.status === 401) {
         throw new Error("Invalid password");
+      } else if (response.status === 429) {
+        throw new Error("Too many attempts. Please wait a minute.");
+      } else {
+        throw new Error("Server error");
       }
     } catch (err) {
-      setError("Invalid password or server error");
+      setError(err.message || "Server error");
       setIsAuthenticated(false);
-      sessionStorage.removeItem("admin_password");
     } finally {
       setLoading(false);
     }
@@ -63,7 +57,7 @@ const AdminPanel = () => {
 
   const handleDownload = async () => {
     try {
-      const endpoint = "http://127.0.0.1:8000/contacts/export-excel";
+      const endpoint = `${API_URL}/contacts/export-excel`;
 
       const response = await fetch(endpoint, {
         headers: {
@@ -71,7 +65,15 @@ const AdminPanel = () => {
         },
       });
 
-      if (!response.ok) throw new Error("Download failed");
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error("Unauthorized. Check your password.");
+        }
+        if (response.status === 429) {
+          throw new Error("Too many downloads. Try again later.");
+        }
+        throw new Error("Download failed");
+      }
 
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -83,7 +85,7 @@ const AdminPanel = () => {
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
     } catch (err) {
-      alert("Error downloading file");
+      alert(err.message || "Error downloading file");
     }
   };
 
@@ -152,7 +154,6 @@ const AdminPanel = () => {
             </button>
             <button
               onClick={() => {
-                sessionStorage.removeItem("admin_password");
                 setIsAuthenticated(false);
                 setPassword("");
               }}
@@ -174,8 +175,8 @@ const AdminPanel = () => {
                   Back to the public site
                 </h3>
                 <p className="text-sm text-gray-300 mt-2 max-w-sm">
-                  Review the live experience, updates, and layout before
-                  sharing the link.
+                  Review the live experience, updates, and layout before sharing
+                  the link.
                 </p>
               </div>
               <span className="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs text-blue-200">
@@ -228,9 +229,7 @@ const AdminPanel = () => {
               <p className="text-sm text-blue-300">
                 {latestContact ? latestContact.email : "—"}
               </p>
-              <p className="text-xs text-gray-500 mt-2">
-                {latestContactDate}
-              </p>
+              <p className="text-xs text-gray-500 mt-2">{latestContactDate}</p>
             </div>
           </div>
         </div>

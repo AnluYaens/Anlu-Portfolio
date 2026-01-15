@@ -5,10 +5,12 @@ const INITIAL_FORM = {
   email: "",
   message: "",
 };
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ContactSection = () => {
   const [formData, setFormData] = useState(INITIAL_FORM);
   const [status, setStatus] = useState("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -20,19 +22,27 @@ const ContactSection = () => {
     if (status === "loading") {
       return;
     }
+    setErrorMessage("");
     setStatus("loading");
     try {
-      const response = await fetch("http://127.0.0.1:8000/contacts/", {
+      const response = await fetch(`${API_URL}/contacts/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       if (!response.ok) {
+        if (response.status === 429) {
+          throw new Error("Too many messages. Please wait a minute.");
+        }
         throw new Error("Request failed");
       }
       setFormData(INITIAL_FORM);
+      setErrorMessage("");
       setStatus("success");
     } catch (error) {
+      setErrorMessage(
+        error.message || "Something went wrong. Please try again."
+      );
       setStatus("error");
     }
   };
@@ -80,7 +90,7 @@ const ContactSection = () => {
               )}
               {status === "error" && (
                 <p className="text-sm text-red-400">
-                  Something went wrong. Please try again.
+                  {errorMessage || "Something went wrong. Please try again."}
                 </p>
               )}
             </div>

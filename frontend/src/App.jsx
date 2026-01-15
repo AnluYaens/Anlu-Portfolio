@@ -15,10 +15,11 @@ function App() {
 
   // State to store the project list
   const [projects, setProjects] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
   // useEffect: Runs once when the page loads
   useEffect(() => {
     // Fetch data from YOUR Backend (Python)
-    fetch("http://127.0.0.1:8000/projects/")
+    fetch(`${API_URL}/projects/`)
       .then((response) => response.json())
       .then((data) => {
         setProjects(data); // Store data in 'projects' state
