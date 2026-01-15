@@ -5,3 +5,5 @@ psycopg2-binary
 python-multipart
 openpyxl
 python-dotenv
+slowapi
+email-validator

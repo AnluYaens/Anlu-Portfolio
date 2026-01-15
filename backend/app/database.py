@@ -1,4 +1,5 @@
 from sqlmodel import SQLModel, create_engine, Session
+import os
 
 # For now will use sqlite (a local file is created)
 # then will change into postgresql when needed
@@ -6,7 +7,8 @@ from sqlmodel import SQLModel, create_engine, Session
 sqllite_file_name = "database.db"
 DATABASE_URL = f"sqlite:///{sqllite_file_name}"
 
-engine = create_engine(DATABASE_URL, echo=True)
+debug_sql = os.getenv("DEBUG_SQL", "false").lower() == "true"
+engine = create_engine(DATABASE_URL, echo=debug_sql)
 
 def create_db_and_tables():
     """Crea las tablas si no existen"""
