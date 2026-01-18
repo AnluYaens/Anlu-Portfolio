@@ -47,7 +47,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <span className="text-gray-600 text-xs">
-            © Anlucodes{new Date().getFullYear()}
+            @AnluYaens {new Date().getFullYear()}
           </span>
         </div>
       </div>
