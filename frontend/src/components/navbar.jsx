@@ -41,7 +41,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile Menu Button (Se mantiene igual por ahora) */}
+          {/* Mobile menu button (unchanged for now) */}
           <div className="md:hidden flex items-center">
             <button className="text-gray-300 hover:text-white focus:outline-none">
               <svg

@@ -1,16 +1,22 @@
-# Ignorar carpeta de entorno virtual
+# Ignore virtual environment folder
 .venv/
 
-# Ignorar archivos compilados de Python
+# Ignore compiled Python files
 __pycache__/
 *.py[cod]
 
-# Ignorar variables de entorno (Claves secretas)
+# Ignore environment variables (secrets)
 .env
 
-# Ignorar base de datos local (Opcional, pero recomendado)
+# Ignore local database files (optional, recommended)
 *.db
 *.sqlite3
 
-# Ignorar carpeta de sistema de Mac (por si acaso)
+# Ignore macOS system files
 .DS_Store
+
+# Ignore Node.js dependencies and build output
+node_modules/
+dist/
+dist-ssr/
+*.local

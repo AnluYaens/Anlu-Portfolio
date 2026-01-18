@@ -1,7 +1,7 @@
 import React from "react";
 
 const BentoGrid = () => {
-  // Array de tecnologías con sus iconos de DevIcons
+  // List of technologies with DevIcons classes.
   const technologies = [
     { name: "Python", icon: "devicon-python-plain colored" },
     { name: "React", icon: "devicon-react-original colored" },
@@ -131,3 +131,4 @@ const BentoGrid = () => {
 };
 
 export default BentoGrid;
+

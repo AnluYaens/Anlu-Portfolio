@@ -9,7 +9,7 @@ body {
   position: relative;
 }
 
-/* Fondo con grid tecnologico*/
+/* Tech grid background */
 body::before {
   content: "";
   position: fixed;
@@ -31,11 +31,11 @@ body::before {
       rgba(139, 92, 246, 0.03) 50px,
       rgba(139, 92, 246, 0.03) 51px
     );
-  pointer-events: none; /*el grid no bloquea clicks*/
-  z-index: 0; /*detras de todo*/
+  pointer-events: none; /* grid does not block clicks */
+  z-index: 0; /* behind everything */
 }
 
-/* Particulas flotantes*/
+/* Floating particles */
 body::after {
   content: "";
   position: fixed;

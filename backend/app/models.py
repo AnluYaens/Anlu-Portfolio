@@ -10,7 +10,7 @@ class Project(SQLModel, table=True):
     image_url: Optional[str] = None
     link_github: Optional[str] = None
     link_demo: Optional[str] = None
-    tags: Optional[str] = None # Ej: "Python, React"
+    tags: Optional[str] = None # Example: "Python, React"
 
 class ContactMessage(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)

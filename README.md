@@ -122,6 +122,27 @@ DEBUG_SQL=true
 - Admin endpoints require the `x-admin-password` header.
 - Rate limits: contacts 5/min, admin 30/min, export 5/min.
 
+## Files not included in the ZIP
+
+The ZIP intentionally excludes:
+
+- `frontend/node_modules/`
+- `.venv/`
+- `backend/database.db`
+- `frontend/dist/` and `frontend/dist-ssr/`
+
+To recreate them:
+
+- Run `npm install` in `frontend/` to restore `node_modules/`.
+- Create and activate a Python venv, then `pip install -r requirements.txt`.
+- Start the backend once to generate `backend/database.db`.
+
+The `.env` files are included so the app runs with the provided defaults.
+
+On first run, the backend auto-seeds demo projects and demo contact messages
+when the database is empty. To reset the demo data, delete `backend/database.db`
+and start the backend again.
+
 ## Copyright
 
 @AnluYaens 2026

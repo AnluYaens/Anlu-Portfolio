@@ -6,16 +6,16 @@ const Hero = () => {
       id="home"
       className="flex flex-col items-center justify-center py-10 text-center max-w-4xl mx-auto"
     >
-      {/* Avatar Section*/}
+      {/* Avatar section */}
       <div className="relative mb-8">
-        {/*Animated glow*/}
+        {/* Animated glow */}
         <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-2xl opacity-30 animate-pulse"></div>
-        {/*Rotating exterior ring */}
+        {/* Rotating exterior ring */}
         <div
           className="absolute -inset-2 rounded-full animate-spin-slow bg-gradient-to-r from-blue-500 via-purple-600 to-blue-500 opacity-20"
           style={{ animationDuration: "3s" }}
         ></div>
-        {/*Profil photo*/}
+        {/* Profile photo */}
         <div className="relative">
           <img
             src="https://api.dicebear.com/9.x/avataaars/svg?seed=Anlu"

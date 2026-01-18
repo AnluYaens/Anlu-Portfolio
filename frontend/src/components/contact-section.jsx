@@ -53,7 +53,7 @@ const ContactSection = () => {
     <section id="contact" className="max-w-6xl mx-auto mt-20">
       <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10 backdrop-blur-sm">
         <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-10">
-          {/* Columna izquierda - Información de contacto */}
+          {/* Left column - Contact details */}
           <div className="w-full">
             <h3 className="text-2xl font-bold text-white mb-4 pl-2 border-l-4 border-blue-500">
               Contact
@@ -65,7 +65,7 @@ const ContactSection = () => {
               Leave a message and I will get back to you as soon as I can.
             </p>
 
-            {/* Botón de Enviar (Download CSV movido a /admin) */}
+            {/* Submit button (CSV download moved to /admin) */}
             <div className="mt-8">
               <button
                 type="submit"
@@ -81,7 +81,7 @@ const ContactSection = () => {
               </button>
             </div>
 
-            {/* Mensajes de estado */}
+            {/* Status messages */}
             <div className="mt-4">
               {status === "success" && (
                 <p className="text-sm text-green-400">
@@ -96,7 +96,7 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Columna derecha - Formulario */}
+          {/* Right column - Form */}
           <form
             id="contact-form"
             onSubmit={handleSubmit}
@@ -157,3 +157,4 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
+
